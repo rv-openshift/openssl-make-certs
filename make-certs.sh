@@ -54,6 +54,8 @@ keyUsage = keyCertSign, cRLSign
 EOT
 
 # create root-ca
+
+# if you don't want passphare, remove -des3
 openssl genrsa -des3 -out rootCA/rootCA.key 4096
 
 openssl req -x509 -new -nodes -key rootCA/rootCA.key -sha256 -days 3650 -out rootCA/rootCA.crt -config root-ca.cnf
