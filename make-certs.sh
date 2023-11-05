@@ -53,7 +53,7 @@ basicConstraints = critical,CA:true,pathlen:0
 keyUsage = keyCertSign, cRLSign
 EOT
 
-# create root-ca
+# create root-ca, run this separate if you want passphrase
 openssl genrsa -out rootCA/rootCA.key 4096
 
 openssl req -x509 -new -nodes -key rootCA/rootCA.key -sha256 -days 3650 -out rootCA/rootCA.crt -config root-ca.cnf
