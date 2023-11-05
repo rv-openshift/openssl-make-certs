@@ -4,4 +4,6 @@ No time to make it more dynamic script to change domain, subdomain and host, jus
 
 Would appreciate if someone do that.
 
+Compatibility: centos8-9
+
 Thanks!
