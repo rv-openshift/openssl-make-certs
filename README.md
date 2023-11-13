@@ -11,13 +11,13 @@ My apologies this is not working!  Below is fine but without intermediate CA,
 ```
 openssl ecparam -name prime256v1 -genkey -noout -out ca.key
 ll
-openssl req -new -x509 -sha256 -key ca.key -out ca.crt
+openssl req -new -x509 -days 365 -key ca.key -subj "/C=CA/ST=ON/L=TOR/O=Ric, Inc./CN=ric.io" -out ca.crt
 ll
 openssl ecparam -name prime256v1 -genkey -noout -out server.key
 ll
-openssl req -new -sha256 -key server.key -out server.csr
+openssl req -newkey rsa:2048 -nodes -keyout server.key -subj "/C=CA/ST=ON/L=TOR/O=Ric, Inc./CN=*.ric.io" -out server.csr
 ll
-openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 1000 -sha256
+openssl x509 -req -extfile <(printf "subjectAltName=DNS:ric.io,DNS:gitlab.ric.io") -days 1000 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 ll
-openssl verify -CAfile ca.crt server.crt
+openssl verify -CAfile ca.crt server.crt # testing is the key!!!!!!!!!!!!!!!
 ```
