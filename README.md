@@ -15,7 +15,7 @@ openssl req -new -x509 -days 365 -key ca.key -subj "/C=CA/ST=ON/L=TOR/O=Ric, Inc
 ll
 openssl ecparam -name prime256v1 -genkey -noout -out server.key
 ll
-openssl req -newkey rsa:2048 -nodes -keyout server.key -subj "/C=CA/ST=ON/L=TOR/O=Ric, Inc./CN=*.ric.io" -out server.csr
+openssl req -newkey rsa:2048 -nodes -keyout server.key -subj "/C=CA/ST=ON/L=TOR/O=Ric, Inc./CN=gitlab.ric.io" -out server.csr
 ll
 openssl x509 -req -extfile <(printf "subjectAltName=DNS:ric.io,DNS:gitlab.ric.io") -days 1000 -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt
 ll
